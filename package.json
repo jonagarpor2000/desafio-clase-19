@@ -1,0 +1,28 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "Implementación de login",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonagarpor2000/desafio-clase-19.git"
+  },
+  "keywords": [],
+  "author": "Jonathan Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonagarpor2000/desafio-clase-19/issues"
+  },
+  "homepage": "https://github.com/jonagarpor2000/desafio-clase-19#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "mongoose": "^8.4.0",
+    "mongoose-paginate-v2": "^1.8.1"
+  }
+}

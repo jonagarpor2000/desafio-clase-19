@@ -44,13 +44,17 @@ sessionsRouter.post('/login', (req, res) => {
     }
 
     console.log(req.session.user)
-    res.send('login success')
+    res.redirect('/products')
 })
 
 
 sessionsRouter.get('/logout', (req, res) => {
     req.session.destroy( err => {
         if(err) return res.send({status: 'error', error: err})
-        else return res.send('logout')
+        else return res.redirect('/login')
     })
+})
+
+sessionsRouter.get('/profile', auth, (req, res) => {
+    res.send('No esta autenticado')
 })

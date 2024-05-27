@@ -2,6 +2,7 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import __dirname from './utils.js';
 import viewsRouter from './routers/viewsRouter.js'
+
 import { connectDB } from '../config/index.js'
 
 

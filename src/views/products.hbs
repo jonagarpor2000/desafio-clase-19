@@ -1,9 +1,9 @@
 <a href="/api/sessions/logout" class="btn btn-outline-danger">Logout</a>
-<h1>Welcome to Product List</h1>
+<h1>Welcome {{#each user}}{{first_name}} {{last_name}}{{/each}} to Product List</h1>
 <div>
 {{#each products.docs}}
-<p> Titulo: {{this.title}}</p>
-<p> Descripcion: {{this.description}}</p>
+<p> Titulo: {{title}}</p>
+<p> Descripcion: {{description}}</p>
 <p> Precio: {{price}}</p>
 <p> Estado: {{status}}</p>
 <p> Categoria: {{category}}</p>

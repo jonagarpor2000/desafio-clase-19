@@ -11,6 +11,7 @@ export class UsersManagerMongo {
     }
   
     async createUser(newUser) {
+      const {first_name,last_name,email,password,role} = newUser
         return await this.userModel.create(newUser)
     }
   
@@ -20,9 +21,5 @@ export class UsersManagerMongo {
     async getUserBy(filter) {
       return this.userModel.findOne(filter);
     }
-  
-    async getUserByEmail(email) {
-      return this.users.find((user) => user.email === email);
-    }  
-  
+
   }

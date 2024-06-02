@@ -40,7 +40,7 @@ sessionsRouter.post('/login', (req, res) => {
 
     req.session.user = {
         email,
-        admin: true
+        role: 'Admin'
     }
 
     console.log(req.session.user)
@@ -54,6 +54,11 @@ sessionsRouter.get('/logout', (req, res) => {
         else return res.redirect('/login')
     })
 })
+sessionsRouter.get('/current', auth,(req, res) => {
+    res.send(`Hola ${req.session.user} los datos son clasificados`)
+})
+
+
 
 sessionsRouter.get('/profile', auth, (req, res) => {
     res.send('No esta autenticado')

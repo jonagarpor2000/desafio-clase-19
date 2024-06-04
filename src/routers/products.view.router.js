@@ -15,7 +15,7 @@ router.get('/',auth,async(req,res)=>{
         let userbymail = await userService.getUserBy({email: req.session.user.email})
         console.log(userbymail)
         console.log(prods)
-
+  
         res.render('products',{
             user: userbymail,
             products: prods

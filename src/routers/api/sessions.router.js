@@ -2,7 +2,7 @@
 import {Router} from 'express'
 import { UsersManagerMongo } from '../../dao/usrMg_db.js'
 import { auth } from '../../middlewares/auth.middleware.js'
-import { createHash } from '../../utils/bcrypt.js'
+import { createHash, isValidPassword } from '../../utils/bcrypt.js'
 
 
 export const sessionsRouter = Router()
@@ -33,15 +33,16 @@ sessionsRouter.post('/register', async (req, res) => {
         res.status(401).send({status: 'error', error: 'error al registrar usuario'})
     }
 })
-sessionsRouter.post('/login', (req, res) => {
+sessionsRouter.post('/login', async(req, res) => {
     const {email, password} = req.body
-
-    if(email !== 'adminCoder@coder.com' || password !== 'adminCod3r123') return res.send('login failed')
-
-    req.session.user = {
-        email,
-        role: 'Admin'
-    }
+    const userFound = await userService.getUserBy({email})
+    if(!isValidPassword(password,{password: userFound.password})) return res.status(401).send({status: 'error', error: 'login failed'})
+   
+        req.session.user = {
+            email,
+            role: userFound.role
+        }
+    
 
     console.log(req.session.user)
     res.redirect('/products')

@@ -5,7 +5,7 @@ import { UsersManagerMongo } from '../dao/usrMg_db.js'
 const userService = new UsersManagerMongo()
 const router = Router()
 
-router.get('/',auth,async(req,res)=>{
+router.get('/',async(req,res)=>{
     let {numPage,limit,query,sort} = req.query
     console.log(`Tengo pag: ${numPage} y ${limit}`)
     try {
@@ -14,10 +14,9 @@ router.get('/',auth,async(req,res)=>{
         .then(data => {return data.payload})
         let userbymail = await userService.getUserBy({email: req.session.user.email})
         console.log(userbymail)
-        console.log(prods)
-  
+        const {first_name,last_name,role} = userbymail
         res.render('products',{
-            user: userbymail,
+            user: {first_name,last_name,role},
             products: prods
         })
         
